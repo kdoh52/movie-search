@@ -46,20 +46,42 @@ export default function Movie(props) {
     const [movies, setMovies] = useState([])
 
     // let disable = false
+    // let hehe = JSON.parse(props)
 
     useEffect(() => {
+        // console.log(hehe + 'aoweijvaeowijaewoi')
         API.getMovies()
         .then(res => 
             // console.log(res.data)
-            res.data.map(movie => {
-                // console.log(movie)
-                if (movie.id == props.id) {
-                    setDisable(true)
-                    console.log('DISABLE')
-                }
-            })
+            // setMovies(res.data)
+            checkDisable(res.data)
+            // res.data.map(movie => {
+            //     // console.log(movie)
+            //     if (movie.id == props.id) {
+            //         setDisable(true)
+            //         console.log('DISABLE')
+            //     }
+            // })
         ).catch(err => console.log(err));
-    }, [])
+    }, [props])
+
+    function checkDisable(data) {
+        // setMovies(data)
+        console.log('hihihi' + props.id)
+        data.map(movie => {
+            console.log(movie.id)
+            // console.log(movie)
+            if (movie.id == props.id) {
+                setDisable(true)
+                console.log('DISABLE')
+                return
+            } else {
+                setDisable(false)
+                // return
+            }
+        })
+    }
+
 
     function handleAddMovie(props) {
         // console.log(props.id)
@@ -87,6 +109,7 @@ export default function Movie(props) {
             ) : (
                 <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button>
             )}
+
             {/* <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button> */}
             {/* <div className={classes.add}>
                 <AddBtn onClick={() => handleAddMovie(movie)}/>

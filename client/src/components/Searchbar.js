@@ -6,6 +6,8 @@ import SearchIcon from '@material-ui/icons/Search';
 // import Typography from '@material-ui/core/Typography';
 import { TextField, Grid, Typography, Button } from '@material-ui/core';
 import Movie from './Movie';
+import API from '../utils/API'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +34,7 @@ export default function Searchbar() {
     
     const [movies, setMovies] = useState([])
     const [formObject, setFormObject] = useState({})
+    const [disable, setDisable] = useState(false)
     
     // useEffect(() => {
     //     // searchMovies()
@@ -62,6 +65,34 @@ export default function Searchbar() {
         });
     }
 
+    function handleAddMovie(props) {
+        // console.log(props.id)
+        // console.log(props.title)
+        // console.log(props.year)
+        // console.log(props.image)
+        setDisable(true)
+        API.saveMovie({
+          id: props.id,
+          title: props.title,
+          year: props.year,
+          image: props.image,
+        })
+        .then().catch(err => console.log(err));
+    };
+
+    function checkDisable(data) {
+        // setMovies(data)
+        // console.log('hihihi' + props.id)
+        movies.map(movie => {
+            // console.log(movie.id)
+            // console.log(movie)
+            if (movie.id == data.imdbID) {
+                setDisable(true)
+                console.log('DISABLE')
+            }
+        })
+    }
+
     return (
         <Grid container justify='center' alignItems='center'>
             <Grid item xs={12} sm={12} md={12} className={classes.searchBar}>
@@ -84,6 +115,12 @@ export default function Searchbar() {
                         year={movie.Year}
                         image={movie.Poster}
                     />
+                    {/* { checkDisable(movie) }
+                    { disable ? (
+                        <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small" disabled>Save</Button>
+                    ) : (
+                        <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small">Save</Button>
+                    )} */}
                 </Grid>
             ))}
         </Grid>
