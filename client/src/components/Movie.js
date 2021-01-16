@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import API from '../utils/API'
@@ -25,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         textAlign: 'center',
-        marginBottom: '0px'
+        marginBottom: '0px',
+        fontSize: '1em',
+        // color: 'red',
+        '@media (max-width: 700px)' : {
+            fontSize: '0.9em'
+            // color: 'red'
+        }
     },
     year: {
         textAlign: 'center',
@@ -36,12 +42,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Movie(props) {
     let classes = useStyles()
+    const [disable, setDisable] = useState(false)
+    const [movies, setMovies] = useState([])
+
+    // let disable = false
+
+    useEffect(() => {
+        API.getMovies()
+        .then(res => 
+            // console.log(res.data)
+            res.data.map(movie => {
+                // console.log(movie)
+                if (movie.id == props.id) {
+                    setDisable(true)
+                    console.log('DISABLE')
+                }
+            })
+        ).catch(err => console.log(err));
+    }, [])
 
     function handleAddMovie(props) {
-        console.log(props.id)
-        console.log(props.title)
-        console.log(props.year)
-        console.log(props.image)
+        // console.log(props.id)
+        // console.log(props.title)
+        // console.log(props.year)
+        // console.log(props.image)
+        setDisable(true)
         API.saveMovie({
           id: props.id,
           title: props.title,
@@ -57,7 +82,12 @@ export default function Movie(props) {
             <img src={props.image} className={classes.image}/>
             <p className={classes.title}>{props.title}</p> 
             <p className={classes.year}>{props.year}</p> 
-            <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button>
+            { disable ? (
+                <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small" disabled>Save</Button>
+            ) : (
+                <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button>
+            )}
+            {/* <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button> */}
             {/* <div className={classes.add}>
                 <AddBtn onClick={() => handleAddMovie(movie)}/>
             </div> */}

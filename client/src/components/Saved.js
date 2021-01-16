@@ -9,12 +9,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
-    form: {
-        marginLeft: "10%"
-    },
-    searchBar: {
-        marginBottom: '40px'
-    },
+    savedContainer: {
+        marginBottom: '30px'
+    }
 }));
 
 export default function Saved() {
@@ -23,6 +20,9 @@ export default function Saved() {
 
     useEffect(() => {
         searchDatabase()
+        // if (movies.length === 5) {
+        //     // alert('yo')
+        // }
     }, [movies])
 
     function searchDatabase() {
@@ -33,12 +33,14 @@ export default function Saved() {
         ).catch(err => console.log(err));
     }
 
+    
+
 
     return (
         <div>
         <Grid container justify='center' alignItems='center'>
             {movies.map(movie => (
-                <Grid item xs={6} sm={4} md={3}>
+                <Grid className={classes.savedContainer} item xs={4} sm={4} md={2}>
                     <SavedMovie 
                         dbID={movie._id}
                         id={movie.id}

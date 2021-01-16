@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -18,14 +18,24 @@ const useStyles = makeStyles((theme) => ({
     searchBar: {
         marginBottom: '40px'
     },
+    button: {
+        height: '40px',
+        marginLeft: '5px'
+    },
+    resultsContainer: {
+        marginBottom: '20px'
+    }
 }));
 
 export default function Searchbar() {
     let classes = useStyles();
-
+    
     const [movies, setMovies] = useState([])
     const [formObject, setFormObject] = useState({})
-
+    
+    // useEffect(() => {
+    //     // searchMovies()
+    // }, [movies])
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -60,14 +70,14 @@ export default function Searchbar() {
                         Search for a movie title
                     </Typography>
                     <TextField onChange={handleInputChange} name="movieTitle" variant='outlined' size='small' placeholder='type here'/>
-                    <Button onClick={handleSearch} variant="contained" color="primary">
+                    <Button onClick={handleSearch} variant="contained" color="primary" className={classes.button} type="submit">
                         <SearchIcon/>
                         Search
                     </Button>
                 </form>
             </Grid>
             {movies.map(movie => (
-                <Grid item xs={6} sm={4} md={3}>
+                <Grid className={classes.resultsContainer} item xs={6} sm={4} md={3}>
                     <Movie 
                         id={movie.imdbID}
                         title={movie.Title}
