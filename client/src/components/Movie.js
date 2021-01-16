@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Movie(props) {
     let classes = useStyles()
     const [disable, setDisable] = useState(false)
-    const [movies, setMovies] = useState([])
+    // const [movies, setMovies] = useState([])
 
     // let disable = false
     // let hehe = JSON.parse(props)
@@ -67,7 +67,7 @@ export default function Movie(props) {
 
     function checkDisable(data) {
         // setMovies(data)
-        console.log('hihihi' + props.id)
+        // console.log('hihihi' + props.id)
         data.map(movie => {
             console.log(movie.id)
             // console.log(movie)

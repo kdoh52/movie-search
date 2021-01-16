@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from '../utils/API';
 import { Grid, Typography, Button } from '@material-ui/core';
 import SavedMovie from '../components/SavedMovie'
-
+import Success from '../components/Success'
+import Exceeds from '../components/Exceeds'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,7 +52,14 @@ export default function Saved() {
                 </Grid>
             ))}
         </Grid>
-
+        {movies.length == 5 ? (
+            <Success/>
+        ) : (null)
+        }
+        {movies.length > 5 ? (
+            <Exceeds/>
+        ) : (null)
+        }
         </div>
     )
 }

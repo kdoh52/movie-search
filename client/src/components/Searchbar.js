@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -35,6 +35,7 @@ export default function Searchbar() {
     const [movies, setMovies] = useState([])
     const [formObject, setFormObject] = useState({})
     const [disable, setDisable] = useState(false)
+    const titleRef = useRef()
     
     // useEffect(() => {
     //     // searchMovies()
@@ -47,8 +48,9 @@ export default function Searchbar() {
 
     function handleSearch(event) {
         event.preventDefault();
-        console.log(formObject.movieTitle);
+        // console.log(formObject.movieTitle);
         searchMovies(formObject.movieTitle);
+        // searchMovies(titleRef.current.value)
     };
 
     function searchMovies(query) {
@@ -64,21 +66,6 @@ export default function Searchbar() {
             console.error(error);
         });
     }
-
-    function handleAddMovie(props) {
-        // console.log(props.id)
-        // console.log(props.title)
-        // console.log(props.year)
-        // console.log(props.image)
-        setDisable(true)
-        API.saveMovie({
-          id: props.id,
-          title: props.title,
-          year: props.year,
-          image: props.image,
-        })
-        .then().catch(err => console.log(err));
-    };
 
     function checkDisable(data) {
         // setMovies(data)
@@ -101,28 +88,33 @@ export default function Searchbar() {
                         Search for a movie title
                     </Typography>
                     <TextField onChange={handleInputChange} name="movieTitle" variant='outlined' size='small' placeholder='type here'/>
+                    {/* <TextField ref={titleRef} name="movieTitle" variant='outlined' size='small' placeholder='type here'/> */}
                     <Button onClick={handleSearch} variant="contained" color="primary" className={classes.button} type="submit">
                         <SearchIcon/>
                         Search
                     </Button>
                 </form>
             </Grid>
-            {movies.map(movie => (
-                <Grid className={classes.resultsContainer} item xs={6} sm={4} md={3}>
-                    <Movie 
-                        id={movie.imdbID}
-                        title={movie.Title}
-                        year={movie.Year}
-                        image={movie.Poster}
-                    />
-                    {/* { checkDisable(movie) }
-                    { disable ? (
-                        <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small" disabled>Save</Button>
-                    ) : (
-                        <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small">Save</Button>
-                    )} */}
-                </Grid>
-            ))}
+            { movies ? (
+                movies.map(movie => (
+                    <Grid className={classes.resultsContainer} item xs={6} sm={4} md={3}>
+                        <Movie 
+                            id={movie.imdbID}
+                            title={movie.Title}
+                            year={movie.Year}
+                            image={movie.Poster}
+                        />
+                        {/* { checkDisable(movie) }
+                        { disable ? (
+                            <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small" disabled>Save</Button>
+                        ) : (
+                            <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small">Save</Button>
+                        )} */}
+                    </Grid>
+                ))
+
+            ) : ('no results found')
+            }
         </Grid>
 
     )
