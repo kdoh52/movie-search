@@ -2,11 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import Jumbotron from './components/Jumbotron';
 import Searchbar from './components/Searchbar';
+import Saved from './components/Saved';
 
 function App() {
   return (
     <div>
       <Jumbotron />
+      <Saved />
       <Searchbar />
     </div>
     // <div className="App">

@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 // import Grid from '@material-ui/core/Grid';
 // import Typography from '@material-ui/core/Typography';
 import { TextField, Grid, Typography, Button } from '@material-ui/core';
+import Movie from './Movie';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +14,10 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         marginLeft: "10%"
-    }
+    },
+    searchBar: {
+        marginBottom: '40px'
+    },
 }));
 
 export default function Searchbar() {
@@ -49,8 +53,8 @@ export default function Searchbar() {
     }
 
     return (
-        <Grid container>
-            <Grid item xs={12} sm={12} md={12}>
+        <Grid container justify='center' alignItems='center'>
+            <Grid item xs={12} sm={12} md={12} className={classes.searchBar}>
                 <form className={classes.form}>
                     <Typography>
                         Search for a movie title
@@ -62,6 +66,16 @@ export default function Searchbar() {
                     </Button>
                 </form>
             </Grid>
+            {movies.map(movie => (
+                <Grid item xs={6} sm={4} md={3}>
+                    <Movie 
+                        id={movie.imdbID}
+                        title={movie.Title}
+                        year={movie.Year}
+                        image={movie.Poster}
+                    />
+                </Grid>
+            ))}
         </Grid>
 
     )

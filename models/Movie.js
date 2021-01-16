@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
+  id: { type: String, required: true },
   title: { type: String, required: true },
-  year: { type: Array, required: true },
-//   synopsis: { type: String },
+  year: { type: String, required: true },
   image: { type: String },
-//   link: { type: String }
 });
 
 const Movie = mongoose.model("Movie", movieSchema);
