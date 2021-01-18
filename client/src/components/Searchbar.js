@@ -56,7 +56,7 @@ export default function Searchbar() {
     function searchMovies(query) {
         const options = {
             method: 'GET',
-            url: 'http://www.omdbapi.com/?i=tt3896198&apikey=db95ff73&s='+ query,
+            url: 'https://www.omdbapi.com/?i=tt3896198&apikey=db95ff73&s='+ query,
         };
         
         axios.request(options).then(function (response) {
