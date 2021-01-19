@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://shoppies-movie-search.herokuapp.com/",
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.9",
