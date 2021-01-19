@@ -15,16 +15,17 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get('*', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
-  });
-}
 
 // Add routes, both API and view
 app.use(routes);
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 // Connect to the Mongo DB
 const uri = process.env.ATLAS_URI;
