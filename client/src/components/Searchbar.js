@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 // import Typography from '@material-ui/core/Typography';
 import { TextField, Grid, Typography, Button } from '@material-ui/core';
 import Movie from './Movie';
-import API from '../utils/API'
+// import API from '../utils/API'
 
 
 
@@ -34,8 +34,8 @@ export default function Searchbar() {
     
     const [movies, setMovies] = useState([])
     const [formObject, setFormObject] = useState({})
-    const [disable, setDisable] = useState(false)
-    const titleRef = useRef()
+    // const [disable, setDisable] = useState(false)
+    // const titleRef = useRef()
     
     // useEffect(() => {
     //     // searchMovies()
@@ -67,18 +67,18 @@ export default function Searchbar() {
         });
     }
 
-    function checkDisable(data) {
-        // setMovies(data)
-        // console.log('hihihi' + props.id)
-        movies.map(movie => {
-            // console.log(movie.id)
-            // console.log(movie)
-            if (movie.id == data.imdbID) {
-                setDisable(true)
-                console.log('DISABLE')
-            }
-        })
-    }
+    // function checkDisable(data) {
+    //     // setMovies(data)
+    //     // console.log('hihihi' + props.id)
+    //     movies.map(movie => {
+    //         // console.log(movie.id)
+    //         // console.log(movie)
+    //         if (movie.id == data.imdbID) {
+    //             setDisable(true)
+    //             console.log('DISABLE')
+    //         }
+    //     })
+    // }
 
     return (
         <Grid container justify='center' alignItems='center'>

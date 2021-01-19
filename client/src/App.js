@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Jumbotron from './components/Jumbotron';
 import Searchbar from './components/Searchbar';
 import Saved from './components/Saved';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (

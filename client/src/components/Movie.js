@@ -48,6 +48,24 @@ export default function Movie(props) {
     // let disable = false
     // let hehe = JSON.parse(props)
 
+    
+    function checkDisable(data) {
+        // setMovies(data)
+        // console.log('hihihi' + props.id)
+        data.map(movie => {
+            console.log(movie.id)
+            // console.log(movie)
+            if (movie.id === props.id) {
+                setDisable(true)
+                console.log('DISABLE')
+                return
+            } else {
+                setDisable(false)
+                // return
+            }
+        })
+    }
+    
     useEffect(() => {
         // console.log(hehe + 'aoweijvaeowijaewoi')
         API.getMovies()
@@ -64,24 +82,6 @@ export default function Movie(props) {
             // })
         ).catch(err => console.log(err));
     }, [props])
-
-    function checkDisable(data) {
-        // setMovies(data)
-        // console.log('hihihi' + props.id)
-        data.map(movie => {
-            console.log(movie.id)
-            // console.log(movie)
-            if (movie.id == props.id) {
-                setDisable(true)
-                console.log('DISABLE')
-                return
-            } else {
-                setDisable(false)
-                // return
-            }
-        })
-    }
-
 
     function handleAddMovie(props) {
         // console.log(props.id)
@@ -101,7 +101,7 @@ export default function Movie(props) {
     return (
         <div className={classes.container}>
             {/* <p>{props.id}</p>  */}
-            <img src={props.image} className={classes.image}/>
+            <img src={props.image} className={classes.image} alt={props.title}/>
             <p className={classes.title}>{props.title}</p> 
             <p className={classes.year}>{props.year}</p> 
             { disable ? (

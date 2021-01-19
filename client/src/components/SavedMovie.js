@@ -49,7 +49,7 @@ export default function Movie(props) {
     return (
         <div className={classes.container}>
             {/* <p>{props.id}</p>  */}
-            <img src={props.image} className={classes.image}/>
+            <img src={props.image} className={classes.image} alt={props.title}/>
             <p className={classes.title}>{props.title}</p> 
             <p className={classes.year}>{props.year}</p> 
             <Button onClick={() => handleRemoveMovie(props)} className={classes.button} variant="contained" size="small">Remove</Button>

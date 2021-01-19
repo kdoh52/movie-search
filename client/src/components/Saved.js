@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../utils/API';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import SavedMovie from '../components/SavedMovie'
 import Success from '../components/Success'
 import Exceeds from '../components/Exceeds'
@@ -52,7 +52,7 @@ export default function Saved() {
                 </Grid>
             ))}
         </Grid>
-        {movies.length == 5 ? (
+        {movies.length === 5 ? (
             <Success/>
         ) : (null)
         }
