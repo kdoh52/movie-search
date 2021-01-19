@@ -3,14 +3,15 @@ import './App.css';
 import Jumbotron from './components/Jumbotron';
 import Searchbar from './components/Searchbar';
 import Saved from './components/Saved';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Jumbotron />
       <Saved />
       <Searchbar />
-    </div>
+    </Router>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
