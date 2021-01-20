@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -38,8 +38,8 @@ export default function Searchbar() {
     // const titleRef = useRef()
     
     // useEffect(() => {
-    //     // searchMovies()
-    // }, [movies])
+    //     // console.log(children, 'QWERT')
+    // }, [])
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -49,6 +49,7 @@ export default function Searchbar() {
     function handleSearch(event) {
         event.preventDefault();
         // console.log(formObject.movieTitle);
+        // console.log(children, "HIHIHI")
         searchMovies(formObject.movieTitle);
         // searchMovies(titleRef.current.value)
     };
@@ -103,6 +104,7 @@ export default function Searchbar() {
                             title={movie.Title}
                             year={movie.Year}
                             image={movie.Poster}
+                            // info={children}
                         />
                         {/* { checkDisable(movie) }
                         { disable ? (

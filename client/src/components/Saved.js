@@ -24,6 +24,7 @@ export default function Saved() {
         // if (movies.length === 5) {
         //     // alert('yo')
         // }
+        // console.log('hi')
     }, [movies])
 
     function searchDatabase() {

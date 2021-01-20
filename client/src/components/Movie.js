@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import API from '../utils/API'
+import { useFavorites } from "../contexts/FavoritesContext"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Movie(props) {
     let classes = useStyles()
     const [disable, setDisable] = useState(false)
-    // const [movies, setMovies] = useState([])
+    const checkFavorites = useFavorites()
 
     // let disable = false
     // let hehe = JSON.parse(props)
@@ -52,35 +53,51 @@ export default function Movie(props) {
     function checkDisable(data) {
         // setMovies(data)
         // console.log('hihihi' + props.id)
-        data.map(movie => {
-            console.log(movie.id)
-            // console.log(movie)
-            if (movie.id === props.id) {
+
+        // data.map(movie => {
+        //     console.log(movie.id)
+        //     console.log(props.id)
+        //     if (movie.id === props.id) {
+        //         setDisable(true)
+        //         console.log('DISABLE')
+        //         return
+        //     } else {
+        //         setDisable(false)
+        //         // return
+        //     }
+        // })
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === props.id) {
                 setDisable(true)
                 console.log('DISABLE')
-                return
+                break
             } else {
                 setDisable(false)
                 // return
             }
-        })
+        }
     }
     
     useEffect(() => {
-        // console.log(hehe + 'aoweijvaeowijaewoi')
-        API.getMovies()
-        .then(res => 
-            // console.log(res.data)
-            // setMovies(res.data)
-            checkDisable(res.data)
-            // res.data.map(movie => {
-            //     // console.log(movie)
-            //     if (movie.id == props.id) {
-            //         setDisable(true)
-            //         console.log('DISABLE')
-            //     }
-            // })
-        ).catch(err => console.log(err));
+        // // console.log(hehe + 'aoweijvaeowijaewoi')
+        // API.getMovies()
+        // .then(res => 
+        //     // console.log(res.data)
+        //     // setMovies(res.data)
+        //     checkDisable(res.data)
+        //     // res.data.map(movie => {
+        //     //     // console.log(movie)
+        //     //     if (movie.id == props.id) {
+        //     //         setDisable(true)
+        //     //         console.log('DISABLE')
+        //     //     }
+        //     // })
+        // ).catch(err => console.log(err));
+
+        console.log(checkFavorites, 'FROM MOVIE.js')
+        checkDisable(checkFavorites)
+        
     }, [props])
 
     function handleAddMovie(props) {
