@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import SavedMovie from '../components/SavedMovie'
 import Success from '../components/Success'
 import Exceeds from '../components/Exceeds'
+import { useFavorites } from "../contexts/FavoritesContext"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,14 +19,19 @@ const useStyles = makeStyles((theme) => ({
 export default function Saved() {
     let classes = useStyles();
     const [movies, setMovies] = useState([])
+    // const [movies, setMovies] = useState([useFavorites()])
+    const favorites = useFavorites()
+
 
     useEffect(() => {
-        searchDatabase()
+        // searchDatabase()
         // if (movies.length === 5) {
         //     // alert('yo')
         // }
         // console.log('hi')
-    }, [movies])
+        // console.log(favorites)
+        setMovies(favorites)
+    }, [favorites])
 
     function searchDatabase() {
         API.getMovies()
@@ -34,9 +40,6 @@ export default function Saved() {
             setMovies(res.data)
         ).catch(err => console.log(err));
     }
-
-    
-
 
     return (
         <div>

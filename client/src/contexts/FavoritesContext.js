@@ -13,8 +13,8 @@ export function FavoritesProvider({ children }) {
 
     useEffect(() => {
         searchDatabase()
-        console.log('SEARCHING FAVORITES')
-    }, [])
+        // console.log('SEARCHING FAVORITES')
+    }, [movies])
     
     function searchDatabase() {
         API.getMovies()

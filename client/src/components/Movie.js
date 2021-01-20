@@ -70,7 +70,7 @@ export default function Movie(props) {
         for (let i = 0; i < data.length; i++) {
             if (data[i].id === props.id) {
                 setDisable(true)
-                console.log('DISABLE')
+                // console.log('DISABLE')
                 break
             } else {
                 setDisable(false)
@@ -80,25 +80,10 @@ export default function Movie(props) {
     }
     
     useEffect(() => {
-        // // console.log(hehe + 'aoweijvaeowijaewoi')
-        // API.getMovies()
-        // .then(res => 
-        //     // console.log(res.data)
-        //     // setMovies(res.data)
-        //     checkDisable(res.data)
-        //     // res.data.map(movie => {
-        //     //     // console.log(movie)
-        //     //     if (movie.id == props.id) {
-        //     //         setDisable(true)
-        //     //         console.log('DISABLE')
-        //     //     }
-        //     // })
-        // ).catch(err => console.log(err));
-
-        console.log(checkFavorites, 'FROM MOVIE.js')
+        // console.log(checkFavorites, 'FROM MOVIE.js')
         checkDisable(checkFavorites)
         
-    }, [props])
+    }, [props, checkFavorites])
 
     function handleAddMovie(props) {
         // console.log(props.id)
