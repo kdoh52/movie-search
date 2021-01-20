@@ -19,27 +19,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Saved() {
     let classes = useStyles();
     const [movies, setMovies] = useState([])
-    // const [movies, setMovies] = useState([useFavorites()])
     const favorites = useFavorites()
 
 
     useEffect(() => {
-        // searchDatabase()
-        // if (movies.length === 5) {
-        //     // alert('yo')
-        // }
-        // console.log('hi')
-        // console.log(favorites)
         setMovies(favorites)
     }, [favorites])
-
-    function searchDatabase() {
-        API.getMovies()
-        .then(res => 
-            // console.log(res.data)
-            setMovies(res.data)
-        ).catch(err => console.log(err));
-    }
 
     return (
         <div>

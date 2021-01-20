@@ -6,9 +6,6 @@ import SearchIcon from '@material-ui/icons/Search';
 // import Typography from '@material-ui/core/Typography';
 import { TextField, Grid, Typography, Button } from '@material-ui/core';
 import Movie from './Movie';
-// import API from '../utils/API'
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,12 +31,6 @@ export default function Searchbar() {
     
     const [movies, setMovies] = useState([])
     const [formObject, setFormObject] = useState({})
-    // const [disable, setDisable] = useState(false)
-    // const titleRef = useRef()
-    
-    // useEffect(() => {
-    //     // console.log(children, 'QWERT')
-    // }, [])
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -48,10 +39,7 @@ export default function Searchbar() {
 
     function handleSearch(event) {
         event.preventDefault();
-        // console.log(formObject.movieTitle);
-        // console.log(children, "HIHIHI")
         searchMovies(formObject.movieTitle);
-        // searchMovies(titleRef.current.value)
     };
 
     function searchMovies(query) {
@@ -67,19 +55,6 @@ export default function Searchbar() {
             console.error(error);
         });
     }
-
-    // function checkDisable(data) {
-    //     // setMovies(data)
-    //     // console.log('hihihi' + props.id)
-    //     movies.map(movie => {
-    //         // console.log(movie.id)
-    //         // console.log(movie)
-    //         if (movie.id == data.imdbID) {
-    //             setDisable(true)
-    //             console.log('DISABLE')
-    //         }
-    //     })
-    // }
 
     return (
         <Grid container justify='center' alignItems='center'>
@@ -104,17 +79,9 @@ export default function Searchbar() {
                             title={movie.Title}
                             year={movie.Year}
                             image={movie.Poster}
-                            // info={children}
                         />
-                        {/* { checkDisable(movie) }
-                        { disable ? (
-                            <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small" disabled>Save</Button>
-                        ) : (
-                            <Button onClick={() => handleAddMovie(movie)} className={classes.button} variant="contained" size="small">Save</Button>
-                        )} */}
                     </Grid>
                 ))
-
             ) : ('no results found')
             }
         </Grid>

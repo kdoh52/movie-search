@@ -38,24 +38,17 @@ export default function Movie(props) {
     let classes = useStyles()
 
     function handleRemoveMovie(props) {
-        // console.log(props.id)
-        // console.log(props.title)
-        // console.log(props.year)
-        console.log(props.dbID)
+        // console.log(props.dbID)
         API.deleteMovie(props.dbID)
         .then().catch(err => console.log(err));
     };
 
     return (
         <div className={classes.container}>
-            {/* <p>{props.id}</p>  */}
             <img src={props.image} className={classes.image} alt={props.title}/>
             <p className={classes.title}>{props.title}</p> 
             <p className={classes.year}>{props.year}</p> 
             <Button onClick={() => handleRemoveMovie(props)} className={classes.button} variant="contained" size="small">Remove</Button>
-            {/* <div className={classes.add}>
-                <AddBtn onClick={() => handleAddMovie(movie)}/>
-            </div> */}
         </div>
     )
 }

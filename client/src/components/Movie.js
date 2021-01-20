@@ -45,28 +45,8 @@ export default function Movie(props) {
     let classes = useStyles()
     const [disable, setDisable] = useState(false)
     const checkFavorites = useFavorites()
-
-    // let disable = false
-    // let hehe = JSON.parse(props)
-
     
     function checkDisable(data) {
-        // setMovies(data)
-        // console.log('hihihi' + props.id)
-
-        // data.map(movie => {
-        //     console.log(movie.id)
-        //     console.log(props.id)
-        //     if (movie.id === props.id) {
-        //         setDisable(true)
-        //         console.log('DISABLE')
-        //         return
-        //     } else {
-        //         setDisable(false)
-        //         // return
-        //     }
-        // })
-
         for (let i = 0; i < data.length; i++) {
             if (data[i].id === props.id) {
                 setDisable(true)
@@ -86,10 +66,6 @@ export default function Movie(props) {
     }, [props, checkFavorites])
 
     function handleAddMovie(props) {
-        // console.log(props.id)
-        // console.log(props.title)
-        // console.log(props.year)
-        // console.log(props.image)
         setDisable(true)
         API.saveMovie({
           id: props.id,
@@ -102,7 +78,6 @@ export default function Movie(props) {
 
     return (
         <div className={classes.container}>
-            {/* <p>{props.id}</p>  */}
             <img src={props.image} className={classes.image} alt={props.title}/>
             <p className={classes.title}>{props.title}</p> 
             <p className={classes.year}>{props.year}</p> 
@@ -111,11 +86,6 @@ export default function Movie(props) {
             ) : (
                 <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button>
             )}
-
-            {/* <Button onClick={() => handleAddMovie(props)} className={classes.button} variant="contained" size="small">Save</Button> */}
-            {/* <div className={classes.add}>
-                <AddBtn onClick={() => handleAddMovie(movie)}/>
-            </div> */}
         </div>
     )
 }

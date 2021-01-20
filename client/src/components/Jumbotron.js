@@ -10,12 +10,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: 10,
         marginBottom: 25
     },
-    // container: {
-    //     margin: 40,
-    //     border: '2px solid',
-    //     backgroundColor: "#e6e6e6",
-    //     borderRadius: "20px"
-    // }
 }))
 
 export default function Jumbotron() {

@@ -23,7 +23,6 @@ export function FavoritesProvider({ children }) {
         ).catch(err => console.log(err));
     }
 
-    // console.log(children, "YOYOYOYO")
     return (
         <FavoritesContext.Provider value={movies}>
             {children}
