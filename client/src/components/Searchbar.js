@@ -45,7 +45,9 @@ export default function Searchbar() {
     function searchMovies(query) {
         const options = {
             method: 'GET',
-            url: 'https://www.omdbapi.com/?i=tt3896198&apikey=db95ff73&s='+ query,
+            // url: 'https://www.omdbapi.com/?i=tt3896198&apikey=db95ff73&s='+ query + "&plot=short&r=json",
+            url: 'https://www.omdbapi.com/?apikey=db95ff73&s='+ query + "&plot=short&r=json",
+
         };
         
         axios.request(options).then(function (response) {
