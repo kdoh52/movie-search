@@ -10,13 +10,22 @@ function rand() {
   }
   
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50
+    const left = 50
 
     return {
         top: `${top}%`,
         left: `${left}%`,
+        // top: '50vh',
+        // left: '50vw',
+        // display: 'flex',
+        // alignItems:'center',
+        // justifyContent:'center',
+        margin: 'auto',
         transform: `translate(-${top}%, -${left}%)`,
+        overflow:'scroll',
+        // transform: `translate(-${top}, -${left})`,
+
     };
 }
 
@@ -34,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
         width: '40%',
         // height: '100px',
         // width: '100px',
+        transition: "all .15s ease-in-out",
+        '&:hover': {
+            // filter: 'brightness(101%)',
+            transform: "scale(1.02)",
+            boxShadow: '0 5px 10px rgba(0,0,0,0.2)'
+        },
     },
     button: {
         display: 'block',
@@ -56,11 +71,22 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         position: 'absolute',
-        width: 400,
+        width: '75vw',
+        maxWidth: '500px',
+        maxHeight: '700px',
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+        '@media (max-width: 420px)' : {
+            maxHeight: '500px',
+            maxWidth: '280px'
+
+            // color: 'red'
+        }
+    },
+    modalPoster: {
+        width: 150
     }
 }));
 
@@ -85,11 +111,16 @@ export default function Movie(props) {
 
     const modalbody = (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">{details.Title}</h2>
-          <h4 id="simple-modal-title">{details.Year}</h4>
-          <h4 id="simple-modal-title">{details.Rated}</h4>
-          <img src={details.Poster} alt={details.Title}/>
+          <h2 id="simple-modal-title">{details.Title} ({details.Year})</h2>
+          <h4 id="simple-modal-title">{details.Rated}, Runtime: {details.Runtime}</h4>
+          <img src={details.Poster} className={classes.modalPoster} alt={details.Title}/>
           <p id="simple-modal-description">{details.Plot}</p>
+          <p id="simple-modal-description">Director: {details.Director}</p>
+          {/* <p id="simple-modal-description">Runtime: {details.Runtime}</p> */}
+          <p id="simple-modal-description">Starring: {details.Actors}</p>
+          <p id="simple-modal-description">IMDB Rating: {details.imdbRating} / 10</p>
+          <p id="simple-modal-description">Genre: {details.Genre}</p>
+
           {/* <SimpleModal /> */}
         </div>
     );
@@ -156,6 +187,7 @@ export default function Movie(props) {
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
+                style={{alignItems:'center',justifyContent:'center'}}
             >
                 {modalbody}
             </Modal>
